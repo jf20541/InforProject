@@ -1,4 +1,3 @@
-from asyncore import read
 import pandas as pd
 import config
 from sklearn.model_selection import train_test_split
@@ -9,6 +8,7 @@ from engine import Engine
 
 
 def train():
+    # import cleaned csv file
     df = pd.read_csv(config.TRAINING_FILE_CLEAN)
     targets = df["target"].values
     features = df.drop("target", axis=1).values
@@ -31,8 +31,13 @@ def train():
         test_dataset, batch_size=config.TEST_BATCH_SIZE
     )
 
+    # couldnt think of a model (I left it empty on the model.py module)
     model = ()
+    
+    # Adam as my optimzier 
     optimizer = torch.optim.AdamW(model.parameters(), lr=config.LEARNING_RATE)
+    
+    # initiate Enginer class (model, optimzier, loss function)
     eng = Engine(model, optimizer)
 
     for epochs in range(config.EPOCHS):

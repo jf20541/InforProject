@@ -6,7 +6,7 @@ class Engine:
         self.model = model
         self.optimizer = optimizer
 
-    # binary cross entroy (1, 0)
+    # MSE Loss function 
     def loss_fn(self, outputs, targets):
         return torch.nn.MSELoss(outputs, targets)
 
