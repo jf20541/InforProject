@@ -33,6 +33,7 @@ class ARIMA:
         test["ARIMA"] = self.arimamodel(train).predict(len(test), index=test.index)
         return test
 
+
 if __name__ == "__main__":
     df = pd.read_csv(config.TRAINING_FILE_CLEAN)
     train, test = train_test_split(df, test_size=0.20, shuffle=False)
