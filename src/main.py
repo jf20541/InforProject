@@ -33,10 +33,10 @@ def train():
 
     # couldnt think of a model (I left it empty on the model.py module)
     model = ()
-    
-    # Adam as my optimzier 
+
+    # Adam as my optimzier
     optimizer = torch.optim.AdamW(model.parameters(), lr=config.LEARNING_RATE)
-    
+
     # initiate Enginer class (model, optimzier, loss function)
     eng = Engine(model, optimizer)
 

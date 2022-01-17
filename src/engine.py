@@ -6,7 +6,7 @@ class Engine:
         self.model = model
         self.optimizer = optimizer
 
-    # MSE Loss function 
+    # MSE Loss function
     def loss_fn(self, outputs, targets):
         return torch.nn.MSELoss(outputs, targets)
 
