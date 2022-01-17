@@ -42,7 +42,7 @@ class Engine:
         with torch.no_grad():
             for data in dataloader:
                 features = data["features"]
-                targets = data["targets"]
+                targets = data["target"]
                 outputs = self.model(features)
                 # append to empty list and conver to numpy array  to list
                 final_targets.extend(targets.cpu().detach().numpy().tolist())
