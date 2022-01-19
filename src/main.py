@@ -20,8 +20,8 @@ def train():
     print(x_train.shape), print(x_test.shape), print(y_train.shape), print(y_test.shape)
 
     # initiate custom dataset and feed to dataloader
-    train_dataset = InforDataset(features=x_train, targets=y_train)
-    test_dataset = InforDataset(features=x_test, targets=y_test)
+    train_dataset = InforDataset(x_train, y_train)
+    test_dataset = InforDataset(x_test, y_test)
 
     # Initialize DataLoader, each iteration returns a batch of features and labels
     train_loader = torch.utils.data.DataLoader(

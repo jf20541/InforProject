@@ -8,7 +8,7 @@ class Engine:
 
     # MSE Loss function
     def loss_fn(self, outputs, targets):
-        return torch.nn.MSELoss(outputs, targets)
+        return torch.nn.MSELoss()(outputs, targets)
 
     # training function for the train_loader
     def train_fn(self, dataloader):
@@ -19,9 +19,9 @@ class Engine:
             # define features and target tensors
             features = data["features"]
             targets = data["target"]
-            # compute forward pass through the model
+            # compute forward pass through the model (MODEL IS NOT DEFINED)
             outputs = self.model(features)
-            # compute loss Binary Cross Entropy function
+            # compute loss MSE Loss
             loss = self.loss_fn(outputs, targets)
             # set gradients to 0
             self.optimizer.zero_grad()
@@ -30,8 +30,8 @@ class Engine:
             # optimizer iterate over all parameters (updates parameters)
             self.optimizer.step()
             # append to empty list and conver to numpy array  to list
-            final_targets.extend(targets.cpu().detach().numpy().tolist())
-            final_outputs.extend(outputs.cpu().detach().numpy().tolist())
+            final_targets.extend(targets.cpu().detach().numpy())
+            final_outputs.extend(outputs.cpu().detach().numpy())
         return final_targets, final_outputs
 
     # evaluation function for the test_loader
@@ -45,6 +45,6 @@ class Engine:
                 targets = data["target"]
                 outputs = self.model(features)
                 # append to empty list and conver to numpy array  to list
-                final_targets.extend(targets.cpu().detach().numpy().tolist())
-                final_outputs.extend(outputs.cpu().detach().numpy().tolist())
+                final_targets.extend(targets.detach().numpy())
+                final_outputs.extend(outputs.detach().numpy())
         return final_targets, final_outputs
